@@ -2,6 +2,33 @@
     pageEncoding="UTF-8"%>
 
 <!-- member/memberForm.jsp -->
+<script type="text/javascript">
+	
+	var httpRequest;
+	function req() {
+		httpRequest = new XMLHttpRequest();
+		
+		//요청시 응답처리하는 함수 호출
+		httpRequest.onreadystatechange=responseFun;
+		
+		var id = document.querySelector("#userid").value;
+		console.log(id);
+		
+		httpRequest.open("get", "MemberIdCheckServlet?userid=" + id, true);	// 비동기
+		httpRequest.send(null);	// get방식이면 null
+	}
+	
+	function responseFun(){
+	    if(httpRequest.readyState == 4 && httpRequest.status == 200){	// 성공시
+	    	var data = httpRequest.responseText;
+	    	console.log(data);
+	    	document.querySelector("#result").innerText=data;
+	    }
+	}
+	
+	
+	
+</script>
 
 <form action="MemberAddServlet">
 	*아이디:<input type="text" name="userid" id="userid" onkeyup="req()">
