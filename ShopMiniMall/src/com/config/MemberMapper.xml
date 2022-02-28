@@ -9,5 +9,10 @@
 		FROM	member
 		WHERE	userid = #{userid}
 	</select>
+	
+	<insert id="memberAdd" parameterType="MemberDTO">
+		INSERT INTO member (userid, passwd, username, post, addr1, addr2, phone1, phone2, phone3, email1, email2)
+		VALUES (#{userid},#{passwd},#{username},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2})
+	</insert>
   
 </mapper>
