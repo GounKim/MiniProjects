@@ -9,10 +9,9 @@
 		httpRequest = new XMLHttpRequest();
 		
 		//요청시 응답처리하는 함수 호출
-		httpRequest.onreadystatechange=responseFun;
+		httpRequest.onreadystatechange = responseFun;
 		
 		var id = document.querySelector("#userid").value;
-		console.log(id);
 		
 		httpRequest.open("get", "MemberIdCheckServlet?userid=" + id, true);	// 비동기
 		httpRequest.send(null);	// get방식이면 null
@@ -21,12 +20,35 @@
 	function responseFun(){
 	    if(httpRequest.readyState == 4 && httpRequest.status == 200){	// 성공시
 	    	var data = httpRequest.responseText;
-	    	console.log(data);
 	    	document.querySelector("#result").innerText=data;
 	    }
 	}
 	
+	function pwcheck() {
+		var pw = document.querySelector("#passwd").value;
+		var pw2 = document.querySelector("#passwd2").value;
+		var mesg = "비번 일치";
+		
+		if (pw != pw2) {
+			mesg = "비번 불일치";
+		}
+		
+		document.querySelector("#result2").innerText = mesg;
+	}
 	
+	function validcheck() {
+		var id = document.querySelector("#userid").value;
+		var pw = document.querySelector("#passwd").value;
+		var pw2 = document.querySelector("#passwd2").value;
+		
+		if (id.length == 0 || pw.length == 0) {
+			alert("아이디와 비밀번호는 필수입니다.");
+			event.preventDefault();
+		} else if (pw2.length == 0) {
+			alert("비밀번호를 확인해주세요");
+			event.preventDefault();
+		}
+	}
 	
 </script>
 
@@ -35,7 +57,7 @@
 	<span id="result" style="color:red"></span>
 	<br>
 	*비밀번호:<input type="text" name="passwd" id="passwd" ><br>
-	비밀번호확인:<input type="text" name="passwd2" id="passwd2" onkeyup="pwcheck()" >
+	*비밀번호확인:<input type="text" name="passwd2" id="passwd2" onkeyup="pwcheck()" >
 	<span id="result2" style="color:red"></span>
 	<br>
 	이름:<input type="text" name="username" ><br>
