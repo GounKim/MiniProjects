@@ -14,21 +14,5 @@
 		INSERT INTO member (userid, passwd, username, post, addr1, addr2, phone1, phone2, phone3, email1, email2)
 		VALUES (#{userid},#{passwd},#{username},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2})
 	</insert>
-	
-	<select id="login" parameterType="hashmap" resultType="MemberDTO">
-		SELECT	userid, 
-				passwd, 
-				username, 
-				post,
-				addr1,
-				addr2,
-				phone1,
-				phone2,
-				phone3,
-				email1,
-				email2
-		FROM	member
-		WHERE	userid = #{id} and passwd = #{pw}
-	</select>
   
 </mapper>
