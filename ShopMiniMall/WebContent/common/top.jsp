@@ -11,7 +11,8 @@
 <%
 	} else {
 %>
-		<a href="">로그아웃</a>
+		안녕하세요 <%= dto.getUsername() %>님 &nbsp;&nbsp;
+		<a href="LogoutServlet">로그아웃</a>
 		<a href="">mypage</a>
 <%
 	}// end if
