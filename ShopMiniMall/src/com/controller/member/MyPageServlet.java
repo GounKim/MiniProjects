@@ -21,8 +21,18 @@ import com.service.member.MemberServiceImpl;
 public class MyPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		String next = "";
+		
+		HttpSession session = request.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		
+		if(dto != null) {
+			next = "mypage.jsp";
+		} else {
+			next = "member/sessionInvalidate.jsp";
+		}
+		
+		request.getRequestDispatcher(next).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

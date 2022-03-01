@@ -6,28 +6,44 @@
                  없으면 sessionScope로 넘어가서 찾는다.
  -->
 
+<script>
+	function selectOption() {
+		var email = document.querySelector("#emailSelect");
+		var email2 = document.querySelector("#email2");
+		if (email.value == "userInput") {
+			email2.readOnly = false;
+			email2.value = "";
+		} else {
+			email2.readOnly = true;
+			email2.value = email.value;
+		}
+		console.dir(email);
+	}
+</script>
+
 <form action="MemberUpdateServlet" method="get">	<!-- 확인을 위해 get사용 -->
-	아이디:	<br>
-	이름:		<br>
-	<input type="text" name="post" id="sample4_postcode" placeholder="우편번호">
+	아이디: ${sessionScope.login.userid} <br>
+	이름:	 ${login.username}<br>
+	<input type="text" value="${login.post}" name="post" id="sample4_postcode" placeholder="우편번호">
 	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
-	<input type="text" name="addr2" id="sample4_jibunAddress" placeholder="지번주소">
+	<input type="text" value="${login.addr1}" name="addr1" id="sample4_roadAddress" placeholder="도로명주소">
+	<input type="text" value="${login.addr2}" name="addr2" id="sample4_jibunAddress" placeholder="지번주소">
 	<span id="guide" style="color:#999"></span>
 	<br>
-	전화번호:<select name="phone1">
-  	<option value="010">010</option>
-  	<option value="011">011</option>
+	전화번호:
+	<select name="phone1">
+		<option value="010" <c:if test="${login.phone1 == '010'}">selected</c:if>>010</option>
+		<option value="011" <c:if test="${login.phone1 == '011'}">selected</c:if>>011</option>
 	</select>-
-	<input type="text" name="phone2" >-<input type="text" name="phone3" >
+	<input type="text" value="${login.phone2}" name="phone2" >-<input type="text" value="${login.phone3}" name="phone3" >
 	<br>
 	<br>
-	이메일:<input type="text" name="email1" id="email1">@
-	       <input type="text" name="email2" id="email2" placeholder="직접입력">
+	이메일:<input type="text" value="${login.email1}" name="email1" id="email1">@
+	       <input type="text" value="${login.email2}" name="email2" id="email2" placeholder="직접입력">
 	       <select  id="emailSelect" onchange="selectOption()">
-	       	<option value="userInput">직접입력</option>
-	       	<option value="daum.net">daum.net</option>
-	        <option value="naver.com">naver.com</option>
+		       	<option value="userInput">직접입력</option>
+		       	<option value="daum.net" <c:if test="${login.email2 == 'daum.net'}">selected</c:if>>daum.net</option>
+		        <option value="naver.com" <c:if test="${login.email2 == 'naver.com'}">selected</c:if>>naver.com</option>
 	       </select>
 	<br>
 	<input type="submit" value="수정">
