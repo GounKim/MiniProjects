@@ -50,6 +50,19 @@
 		}
 	}
 	
+	function selectOption() {
+		var email = document.querySelector("#emailSelect");
+		var email2 = document.querySelector("#email2");
+		if (email.value == "userInput") {
+			email2.readOnly = false;
+			email2.value = "";
+		} else {
+			email2.readOnly = true;
+			email2.value = email.value;
+		}
+		console.dir(email);
+	}
+	
 </script>
 
 <form action="MemberAddServlet">
@@ -76,8 +89,9 @@
 	<br>
 	이메일:<input type="text" name="email1" id="email1">@
 	       <input type="text" name="email2" id="email2" placeholder="직접입력">
-	       <select  id="emailSelect">
-	        <option value="daum.net">daum.net</option>
+	       <select  id="emailSelect" onchange="selectOption()">
+	       	<option value="userInput">직접입력</option>
+	       	<option value="daum.net">daum.net</option>
 	        <option value="naver.com">naver.com</option>
 	       </select>
 	<br>
