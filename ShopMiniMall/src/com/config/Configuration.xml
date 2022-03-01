@@ -10,6 +10,7 @@
   <!-- DTO에 별칭 -->
   <typeAliases>
   	<typeAlias type="com.dto.goods.GoodsDTO" alias="GoodsDTO"/>
+  	<typeAlias type="com.dto.member.MemberDTO" alias="MemberDTO"/>
   </typeAliases>
 
   <environments default="development">
@@ -26,6 +27,7 @@
   
   <mappers>
     <mapper resource="com/config/GoodsMapper.xml"/>
+    <mapper resource="com/config/MemberMapper.xml"/>
   </mappers>
   
 </configuration>

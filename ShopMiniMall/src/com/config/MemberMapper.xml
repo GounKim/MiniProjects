@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.MemberMapper">
+	
+	<select id="idDuplicateCheck" parameterType="string" resultType="int">
+		SELECT	COUNT(*)
+		FROM	member
+		WHERE	userid = #{userid}
+	</select>
+	
+	<insert id="memberAdd" parameterType="MemberDTO">
+		INSERT INTO member (userid, passwd, username, post, addr1, addr2, phone1, phone2, phone3, email1, email2)
+		VALUES (#{userid},#{passwd},#{username},#{post},#{addr1},#{addr2},#{phone1},#{phone2},#{phone3},#{email1},#{email2})
+	</insert>
+  
+</mapper>
