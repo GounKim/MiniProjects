@@ -2,12 +2,15 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="goodsDTO" value="${retrieve}"></c:set>
 
 <FORM name="goodRetrieveForm" method="GET" action="#">
-	    <input type="hidden" name="gImage" value="outer2"> <input
-		type="hidden" name="gCode" value="O2"> <input
-		type="hidden" name="gName" value="히든 버튼 베이직 울코트"> <input
-		type="hidden" name="gPrice" value="52800">
+	    <input type="hidden" name="gImage" value="${goodsDTO.gImage}"> <input
+		type="hidden" name="gCode" value="${goodsDTO.gCode}"> <input
+		type="hidden" name="gName" value="${goodsDTO.gName}"> <input
+		type="hidden" name="gPrice" value="${goodsDTO.gPrice}">
 
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
@@ -32,21 +35,25 @@
 					</tr>
 
 					<tr>
-						<td rowspan="7"><img src="images/items/outer2.gif"
-							border="0" align="center" width="300" /></td>
+						<td rowspan="7">
+							<img src="images/items/${goodsDTO.gImage}.gif"
+							border="0" align="center" width="300" />
+						</td>
 						<td class="td_title">제품코드</td>
-						<td class="td_default" colspan="2" style='padding-left: 30px'>O2
+						<td class="td_default" colspan="2" style='padding-left: 30px'>
+							${goodsDTO.gCode}
 						</td>
 					</tr>
 					<tr>
 						<td class="td_title">상품명</td>
-						<td class="td_default" colspan="2" style='padding-left: 30px'>히든 버튼 베이직 울코트</td>
+						<td class="td_default" colspan="2" style='padding-left: 30px'>
+							${goodsDTO.gName}
+						</td>
 					</tr>
 					<tr>
 						<td class="td_title">가격</td>
-
 						<td class="td_red" colspan="2" style='padding-left: 30px'>
-						￦52,800
+							<fmt:formatNumber value="${goodsDTO.gPrice}" type="currency" />
 						</td>
 					</tr>
 					<tr>
