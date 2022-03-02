@@ -24,7 +24,19 @@ public class GoodsRetrieveServlet extends HttpServlet {
 		
 		String gCode = request.getParameter("gCode");
 		
-		request.getRequestDispatcher("goodsRetrieve.jsp").forward(request, response);
+		String next = "";
+		GoodsService service = new GoodsServiceImpl();
+		try {
+			GoodsDTO dto = service.goodsRetrieve(gCode);
+			request.setAttribute("retrieve", dto);
+			next = "goodsRetrieve.jsp";
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("message", "Retrieve 요청 시 예외 발생");
+			next = "error/error.jsp";
+		}
+		
+		request.getRequestDispatcher(next).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
