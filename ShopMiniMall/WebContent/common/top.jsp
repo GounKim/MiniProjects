@@ -13,7 +13,7 @@
 %>
 		안녕하세요 <%= dto.getUsername() %>님 &nbsp;&nbsp;
 		<a href="LogoutServlet">로그아웃</a>
-		<a href="">mypage</a>
+		<a href="MyPageServlet">mypage</a>
 <%
 	}// end if
 %>

@@ -19,4 +19,8 @@ public class MemberDAO {
 	public MemberDTO login(SqlSession session, HashMap<String, String> map) throws Exception {
 		return session.selectOne("com.config.MemberMapper.login", map);
 	}
+	
+	public int memberUpdate(SqlSession session, MemberDTO dto) throws Exception {
+		return session.update("com.config.MemberMapper.memberUpdate", dto);
+	}
 }
