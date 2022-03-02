@@ -53,4 +53,19 @@ public class MemberServiceImpl implements MemberService {
 		return dto;
 	}
 
+	@Override
+	public int memberUpdate(MemberDTO dto) throws Exception {
+		int num = 0;
+		
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			MemberDAO dao = new MemberDAO();
+			num = dao.memberUpdate(session, dto);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return num;
+	}
+
 }

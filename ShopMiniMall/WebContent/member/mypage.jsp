@@ -22,6 +22,7 @@
 </script>
 
 <form action="MemberUpdateServlet" method="get">	<!-- 확인을 위해 get사용 -->
+	<input type="hidden" name="userid" value="${login.userid}">
 	아이디: ${sessionScope.login.userid} <br>
 	이름:	 ${login.username}<br>
 	<input type="text" value="${login.post}" name="post" id="sample4_postcode" placeholder="우편번호">
