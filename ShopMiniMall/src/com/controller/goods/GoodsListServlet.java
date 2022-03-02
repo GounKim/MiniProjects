@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.goods;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,22 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.controller.goods.GoodsListServlet;
 import com.dto.goods.GoodsDTO;
 import com.service.goods.GoodsService;
 import com.service.goods.GoodsServiceImpl;
 
 /**
- * Servlet implementation class MainServlet
+ * Servlet implementation class GoodsListServlet
  */
-@WebServlet("/Main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/GoodsListServlet")
+public class GoodsListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String gCategory = "top";
-		String next = "";
+		String gCategory = request.getParameter("gCategory");
+		if(gCategory == null) {
+			gCategory = "top";
+		}
 		
+		String next = "";
 		GoodsService service = new GoodsServiceImpl();
 		try {
 			List<GoodsDTO> list = service.goodsList(gCategory);
@@ -32,11 +34,11 @@ public class MainServlet extends HttpServlet {
 			next = "main.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Main 요청 시 예외 발생.");
+			request.setAttribute("errorMessage", "GoodsList 요청 시 예외 발생.");
 			next = "error/error.jsp";
 		}
 		
-		request.getRequestDispatcher("main.jsp").forward(request, response);
+		request.getRequestDispatcher(next).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
