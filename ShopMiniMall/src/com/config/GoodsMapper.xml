@@ -14,5 +14,16 @@
   		FROM	goods
   		WHERE	gCategory = #{gCategory} 
 	</select>
+	
+	<select id="goodsRetrieve" parameterType="string" resultType="GoodsDTO">
+		SELECT	gCode, 
+  				gCategory, 
+  				gName, 
+  				gContent, 
+  				gPrice, 
+  				gImage
+  		FROM	goods
+  		WHERE	gCode = #{gCode} 
+	</select>
   
 </mapper>
