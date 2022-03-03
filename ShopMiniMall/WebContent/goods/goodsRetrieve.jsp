@@ -4,13 +4,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:set var="goodsDTO" value="${retrieve}"></c:set>
+<script type="text/javascript">
+	function reqCheck(target) {
+		if(target == 'cart') {	
+			// 장바구니 클릭 시
+			var f = document.querySelector("form");
+			f.action = "GoodsCartAddServlet";
+			f.method = "get";
+			f.submit();
+		} else {	
+			// 주문 클릭 시
+			
+		}
+	}
+</script>
 
+<c:set var="goodsDTO" value="${retrieve}"></c:set>
 <FORM name="goodRetrieveForm" method="GET" action="#">
-	    <input type="hidden" name="gImage" value="${goodsDTO.gImage}"> <input
-		type="hidden" name="gCode" value="${goodsDTO.gCode}"> <input
-		type="hidden" name="gName" value="${goodsDTO.gName}"> <input
-		type="hidden" name="gPrice" value="${goodsDTO.gPrice}">
+	<input type="hidden" name="gImage" value="${goodsDTO.gImage}"> 
+	<input type="hidden" name="gCode" value="${goodsDTO.gCode}"> 
+	<input type="hidden" name="gName" value="${goodsDTO.gName}"> 
+	<input type="hidden" name="gPrice" value="${goodsDTO.gPrice}">
 
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
