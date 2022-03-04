@@ -79,7 +79,7 @@
 					<tr>
 						<td class="td_title" rowspan="2">상품옵션</td>
 						<td colspan="2" style='padding-left: 30px'><select
-							class="select_change" size="1" name="GOODS_SIZE" id="GOODS_SIZE">
+							class="select_change" size="1" name="gSize" id="gSize">
 								<option selected value="사이즈선택">사이즈선택</option>
 								<option value="L">L</option>
 								<option value="M">M</option>
@@ -88,8 +88,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" style='padding-left: 30px'><select
-							class="select_change" size="1" name="GOODS_COLOR"
-							id="GOODS_COLOR">
+							class="select_change" size="1" name="gColor"
+							id="gColor">
 								<option selected value="색상선택">색상선택</option>
 								<option value="navy">navy</option>
 								<option value="black">black</option>
@@ -102,7 +102,7 @@
 					<tr>
 						<td class="td_title">주문수량</td>
 						<td style="padding-left: 30px"><input type="text"
-							name="GOODS_AMOUNT" value="1" id="GOODS_AMOUNT"
+							name="gAmount" value="1" id="gAmount"
 							style="text-align: right; height: 18px"> <img
 							src="images/up.PNG" id="up"> <img src="images/down.PNG"
 							id="down"></td>
