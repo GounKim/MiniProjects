@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ 
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
 	<tr>
 		<td height="30">
@@ -43,8 +45,6 @@
 		<td height="7">
 	</tr>
 	
-	
-	
 	<tr>
 		<td colspan="10">
 			<hr size="1" color="CCCCCC">
@@ -52,49 +52,62 @@
 	</tr>
 
 
-
-	<form name="myForm">
-		<input type="hidden" name="num81" value="81" id="num81">
-		<input type="hidden" name="gImage81" value="bottom1" id="gImage81">
-		<input type="hidden" name="gName81" value="제나 레이스 스커트" id="gName81">
-		<input type="hidden" name="gSize81" value="L" id="gSize81">
-		<input type="hidden" name="gColor81" value="navy" id="gColor81"> 
-		<input type="hidden" name="gPrice81" value="9800" id="gPrice81">
-
-		<tr>
-			<td class="td_default" width="80">
+<form name="myForm">
+<c:forEach var="dto" items="${cartList}" varStatus="status">
+		
+	<input type="hidden" name="num" value="${dto.num}" id="${dto.num}">
+	<input type="hidden" name="gImage" value="${dto.gImage}" id="gImage">
+	<input type="hidden" name="gName" value="${dto.gName}" id="gName">
+	<input type="hidden" name="gSize" value="${dto.gSize}" id="gSize">
+	<input type="hidden" name="gColor" value="${dto.gColor}" id="gColor"> 
+	<input type="hidden" name="gPrice" value="${dto.gPrice}" id="gPrice">
+	
+	<tr>
+		<td class="td_default" width="80">
 			<!-- checkbox는 체크된 값만 서블릿으로 넘어간다. 따라서 value에 삭제할 num값을 설정한다. -->
 			<input type="checkbox"
-				name="check" id="check81" class="check" value="81"></td>
-			<td class="td_default" width="80">81</td>
-			<td class="td_default" width="80"><img
-				src="images/items/bottom1.gif" border="0" align="center"
-				width="80" /></td>
-			<td class="td_default" width="300" style='padding-left: 30px'>제나 레이스 스커트
-				<br> <font size="2" color="#665b5f">[옵션 : 사이즈(L)
-					, 색상(navy)]
-			</font></td>
-			<td class="td_default" align="center" width="110">
-			￦9,800
-			</td>
-			<td class="td_default" align="center" width="90"><input
-				class="input_default" type="text" name="CART_AMOUNT"
-				id="CART_AMOUNT81" style="text-align: right" maxlength="3"
-				size="2" value="3"></input></td>
-			<td><input type="button" value="수정"
-				onclick="amountUpdate('81')" /></td>
-			<td class="td_default" align="center" width="80"
-				style='padding-left: 5px'><span id="sum81">
-				￦29,400
-				</span></td>
-			<td><input type="button" value="주문"
-				onclick="order('81','a')"></td>
-			<td class="td_default" align="center" width="30"
-				style='padding-left: 10px'><input type="button" value="삭제"
-				onclick="delCart('81')"></td>
-			<td height="10"></td>
-		</tr>
-	</form>
+				name="check" id="check${dto.num}" class="check" value="${dto.num}">
+		</td>
+		<td class="td_default" width="80">
+			${dto.num}
+		</td>
+		<td class="td_default" width="80">
+			<img src="images/items/${dto.gImage}.gif" border="0" align="center" width="80" />
+		</td>
+		<td class="td_default" width="300" style='padding-left: 30px'>
+			${dto.gName}<br> 
+			<font size="2" color="#665b5f">
+				[옵션 : 사이즈(${dto.gSize}), 색상(${dto.gColor})]
+			</font>
+		</td>
+		<td class="td_default" align="center" width="110">
+			${dto.gName}
+		</td>
+		<td class="td_default" align="center" width="90">
+			<input class="input_default" type="text" name="cart_amount" 
+					id="cart_amount" style="text-align: right" maxlength="3"
+					size="2" value="${dto.gAmount}" />
+		</td>
+		<td>
+			<input type="button" value="수정" onclick="amountUpdate('81')" />
+		</td>
+		<td class="td_default" align="center" width="80" style='padding-left: 5px'>
+			<span id="sum">
+				<fmt:formatNumber value="${dto.gPrice}" type="currency" />
+			</span>
+		</td>
+		<td>
+			<input type="button" value="주문" onclick="order('81','a')">
+		</td>
+		<td class="td_default" align="center" width="30" style='padding-left: 10px'>
+			<input type="button" value="삭제" onclick="delCart('81')">
+		</td>
+		
+		<td height="10"></td>
+	</tr>	
+</c:forEach>
+</form>
+	
 	<tr>
 		<td colspan="10">
 			<hr size="1" color="CCCCCC">
