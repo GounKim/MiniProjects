@@ -17,5 +17,18 @@
 			         #{gImage}
 				)
 	</insert>
+	
+	<select id="cartList" parameterType="string" resultType="cartDTO">
+		SELECT	num,
+				gCode,
+				gName,
+				gPrice,
+				gSize,
+				gColor,
+				gAmount,
+				gImage
+		FROM	cart
+		WHERE	userid = #{userid}
+	</select>
   
 </mapper>
