@@ -30,5 +30,16 @@
 		FROM	cart
 		WHERE	userid = #{userid}
 	</select>
+	
+	<update id="cartUpdate" parameterType="hashMap">
+		UPDATE	cart
+		SET		gAmount = #{gAmount}
+		WHERE	num = #{num}
+	</update>
+	
+	<delete id="cartDel" parameterType="int">
+		DELETE	FROM cart
+		WHERE	num = #{num}
+	</delete>
   
 </mapper>

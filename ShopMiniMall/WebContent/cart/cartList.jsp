@@ -33,6 +33,12 @@
 	
 	//////// 장바구니 개수 수정 END //////////
 	
+	// 장바구니 상품 삭제
+	function delCart(num) {
+		console.log("delCart", num);
+		location.href = `GoodsCartDelServlet?num=\${num}`;
+	}
+	
 </script>
  
  
@@ -136,7 +142,7 @@
 			<input type="button" value="주문" onclick="order('81','a')">
 		</td>
 		<td class="td_default" align="center" width="30" style='padding-left: 10px'>
-			<input type="button" value="삭제" onclick="delCart('81')">
+			<input type="button" value="삭제" onclick="delCart(${dto.num})">
 		</td>
 		
 		<td height="10"></td>

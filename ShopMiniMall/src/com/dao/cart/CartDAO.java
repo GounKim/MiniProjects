@@ -20,4 +20,8 @@ public class CartDAO {
 	public int cartUpdate(SqlSession session, HashMap<String, Integer> map) throws Exception {
 		return session.update("com.config.CartMapper.cartUpdate", map);
 	}
+	
+	public int cartDel(SqlSession session, int num) throws Exception {
+		return session.delete("com.config.CartMapper.cartDel", num);
+	}
 }
