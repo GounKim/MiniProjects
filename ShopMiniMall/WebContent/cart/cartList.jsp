@@ -39,6 +39,16 @@
 		location.href = `GoodsCartDelServlet?num=\${num}`;
 	}
 	
+	// 상품 전체 선택 (체크박스)
+	function allCheck() {
+		var allCheck = document.querySelector("#allCheck");
+		var check = document.querySelectorAll(".check");
+		
+		check.forEach(function(data, idx) {
+			data.checked = allCheck.checked;
+		});
+	}
+	
 </script>
  
  
@@ -71,7 +81,9 @@
 
 	<tr>
 		<td class="td_default" align="center">
-		<input type="checkbox" name="allCheck" id="allCheck"> <strong>전체선택</strong></td>
+			<input type="checkbox" name="allCheck" id="allCheck" onclick="allCheck()"> 
+				<strong>전체선택</strong>
+		</td>
 		<td class="td_default" align="center"><strong>주문번호</strong></td>
 		<td class="td_default" align="center" colspan="2"><strong>상품정보</strong></td>
 		<td class="td_default" align="center"><strong>판매가</strong></td>
