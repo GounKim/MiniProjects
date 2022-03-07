@@ -1,5 +1,6 @@
 package com.dao.cart;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,5 +15,9 @@ public class CartDAO {
 	
 	public List<CartDTO> cartList(SqlSession session, String userid) throws Exception {
 		return session.selectList("com.config.CartMapper.cartList", userid);
+	}
+	
+	public int cartUpdate(SqlSession session, HashMap<String, Integer> map) throws Exception {
+		return session.update("com.config.CartMapper.cartUpdate", map);
 	}
 }

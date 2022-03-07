@@ -1,7 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ 
+<script type="text/javascript">
+
+	////////// 장바구니 개수 수정 ///////////
+	var httpRequest;
+	var global_num;
+	
+	function amountUpdate(num) {
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = responseFun;
+		
+		global_num = num;
+		var input_amount = document.querySelector("#cart_amount" + num);
+		var amount = input_amount.value;
+		console.log(amount);
+		var url = `GoodsCartUpdateServlet?num=\${num}&amount=\${amount}`;
+		httpRequest.open("get", url, true);
+		httpRequest.send(null);
+	}
+	
+	function responseFun() {
+		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+			alert("갯수 수정 성공");
+			var price = document.querySelector("#cart_price" + global_num).innerText;
+			var amount = document.querySelector("#cart_amount" + global_num).value;
+			document.querySelector("#sum" + global_num).innerText = price * amount;
+		}
+	}
+	
+	//////// 장바구니 개수 수정 END //////////
+	
+</script>
+ 
  
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
 	<tr>
@@ -80,20 +113,23 @@
 				[옵션 : 사이즈(${dto.gSize}), 색상(${dto.gColor})]
 			</font>
 		</td>
+		
 		<td class="td_default" align="center" width="110">
-			${dto.gName}
+			<span id="cart_price${dto.num}">${dto.gPrice}</span>
 		</td>
+		
 		<td class="td_default" align="center" width="90">
 			<input class="input_default" type="text" name="cart_amount" 
-					id="cart_amount" style="text-align: right" maxlength="3"
+					id="cart_amount${dto.num}" style="text-align: right" maxlength="3"
 					size="2" value="${dto.gAmount}" />
 		</td>
+		
 		<td>
-			<input type="button" value="수정" onclick="amountUpdate('81')" />
+			<input type="button" value="수정" onclick="amountUpdate(${dto.num})" />
 		</td>
 		<td class="td_default" align="center" width="80" style='padding-left: 5px'>
-			<span id="sum">
-				<fmt:formatNumber value="${dto.gPrice}" type="currency" />
+			<span id="sum${dto.num}">
+				<fmt:formatNumber value="${dto.gPrice * dto.gAmount}" type="currency" />
 			</span>
 		</td>
 		<td>
