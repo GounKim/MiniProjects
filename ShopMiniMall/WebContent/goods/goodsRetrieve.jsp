@@ -4,13 +4,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:set var="goodsDTO" value="${retrieve}"></c:set>
+<script type="text/javascript">
+	function reqCheck(target) {
+		if(target == 'cart') {	
+			// 장바구니 클릭 시
+			var f = document.querySelector("form");
+			f.action = "GoodsCartAddServlet";
+			f.method = "get";
+			f.submit();
+		} else {	
+			// 주문 클릭 시
+			
+		}
+	}
+</script>
 
+<c:set var="goodsDTO" value="${retrieve}"></c:set>
 <FORM name="goodRetrieveForm" method="GET" action="#">
-	    <input type="hidden" name="gImage" value="${goodsDTO.gImage}"> <input
-		type="hidden" name="gCode" value="${goodsDTO.gCode}"> <input
-		type="hidden" name="gName" value="${goodsDTO.gName}"> <input
-		type="hidden" name="gPrice" value="${goodsDTO.gPrice}">
+	<input type="hidden" name="gImage" value="${goodsDTO.gImage}"> 
+	<input type="hidden" name="gCode" value="${goodsDTO.gCode}"> 
+	<input type="hidden" name="gName" value="${goodsDTO.gName}"> 
+	<input type="hidden" name="gPrice" value="${goodsDTO.gPrice}">
 
 	<table width="100%" cellspacing="0" cellpadding="0">
 		<tr>
@@ -65,7 +79,7 @@
 					<tr>
 						<td class="td_title" rowspan="2">상품옵션</td>
 						<td colspan="2" style='padding-left: 30px'><select
-							class="select_change" size="1" name="GOODS_SIZE" id="GOODS_SIZE">
+							class="select_change" size="1" name="gSize" id="gSize">
 								<option selected value="사이즈선택">사이즈선택</option>
 								<option value="L">L</option>
 								<option value="M">M</option>
@@ -74,8 +88,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" style='padding-left: 30px'><select
-							class="select_change" size="1" name="GOODS_COLOR"
-							id="GOODS_COLOR">
+							class="select_change" size="1" name="gColor"
+							id="gColor">
 								<option selected value="색상선택">색상선택</option>
 								<option value="navy">navy</option>
 								<option value="black">black</option>
@@ -88,7 +102,7 @@
 					<tr>
 						<td class="td_title">주문수량</td>
 						<td style="padding-left: 30px"><input type="text"
-							name="GOODS_AMOUNT" value="1" id="GOODS_AMOUNT"
+							name="gAmount" value="1" id="gAmount"
 							style="text-align: right; height: 18px"> <img
 							src="images/up.PNG" id="up"> <img src="images/down.PNG"
 							id="down"></td>

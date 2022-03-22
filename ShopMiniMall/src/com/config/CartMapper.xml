@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.CartMapper">
+	
+	<insert id="cartAdd" parameterType="cartDTO">
+		INSERT	INTO cart(num, userid, gCode, gName, gPrice, gSize, gColor, gAmount, gImage)
+		VALUES	(	cart_seq.nextval,
+					#{userid},
+					#{gCode},
+			         #{gName},
+			         #{gPrice},
+			         #{gSize},
+			         #{gColor},
+			         #{gAmount},
+			         #{gImage}
+				)
+	</insert>
+	
+	<select id="cartList" parameterType="string" resultType="cartDTO">
+		SELECT	num,
+				gCode,
+				gName,
+				gPrice,
+				gSize,
+				gColor,
+				gAmount,
+				gImage
+		FROM	cart
+		WHERE	userid = #{userid}
+	</select>
+	
+	<update id="cartUpdate" parameterType="hashMap">
+		UPDATE	cart
+		SET		gAmount = #{gAmount}
+		WHERE	num = #{num}
+	</update>
+	
+	<delete id="cartDel" parameterType="int">
+		DELETE	FROM cart
+		WHERE	num = #{num}
+	</delete>
+	
+	<delete id="cartDelAll" parameterType="string">
+		DELETE	FROM cart
+		WHERE	userid = #{userid}
+	</delete>
+  
+</mapper>

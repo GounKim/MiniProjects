@@ -14,6 +14,7 @@
 		안녕하세요 <%= dto.getUsername() %>님 &nbsp;&nbsp;
 		<a href="LogoutServlet">로그아웃</a>
 		<a href="MyPageServlet">mypage</a>
+		<a href="GoodsCartListServlet">장바구니 목록</a>
 <%
 	}// end if
 %>
