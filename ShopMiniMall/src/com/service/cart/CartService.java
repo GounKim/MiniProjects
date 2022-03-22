@@ -13,4 +13,5 @@ public interface CartService {
 	public List<CartDTO> cartList(String userid) throws Exception;
 	public int cartUpdate(HashMap<String, Integer> map) throws Exception;
 	public int cartDel(int num) throws Exception;
+	public int cartDelAll(String userid) throws Exception;
 }

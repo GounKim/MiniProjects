@@ -70,4 +70,19 @@ public class CartServiceImpl implements CartService {
 		return result;
 	}
 
+	@Override
+	public int cartDelAll(String userid) throws Exception {
+		int result = 0;
+		
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			CartDAO dao = new CartDAO();
+			result = dao.cartDelAll(session, userid);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
 }

@@ -49,6 +49,13 @@
 		});
 	}
 	
+	// 장바구니 상품 전체 삭제
+	function delAllCart(form) {
+		form.action = "GoodsCartDelAllServlet";
+		form.method = "get";
+		form.submit();
+	}
+	
 </script>
  
  
@@ -172,8 +179,8 @@
 	</tr>
 
 	<tr>
-		<td align="center" colspan="5"><a class="a_black"
-			href="javascript:orderAllConfirm(myForm)"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<td align="center" colspan="5">
+			<a class="a_black" href="javascript:orderAllConfirm(myForm)"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
 			<a class="a_black" href="javascript:delAllCart(myForm)"> 전체 삭제하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="a_black" href="index.jsp"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</td>

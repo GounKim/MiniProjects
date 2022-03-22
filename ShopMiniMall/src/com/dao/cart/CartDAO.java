@@ -24,4 +24,8 @@ public class CartDAO {
 	public int cartDel(SqlSession session, int num) throws Exception {
 		return session.delete("com.config.CartMapper.cartDel", num);
 	}
+	
+	public int cartDelAll(SqlSession session, String userid) throws Exception {
+		return session.delete("com.config.CartMapper.cartDelAll", userid);
+	}
 }
